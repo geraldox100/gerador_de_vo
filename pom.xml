@@ -6,6 +6,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+
 		<dependency>
 			<groupId>br.com.geraldoferraz</groupId>
 			<artifactId>scanyourpath</artifactId>
@@ -42,6 +49,55 @@
 			<version>1.4.11</version>
 		</dependency>
 
+		<!-- dependencias sicoob -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>3.2.6</version>
+			<scope>provided</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-java</artifactId>
+			<version>1.0.0.7</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.sicoob.cta</groupId>
+			<artifactId>seguranca-ejb</artifactId>
+			<version>1.0.1.22-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.sicoob.cta</groupId>
+			<artifactId>cta-acesso-ejb</artifactId>
+			<version>1.0.1.22-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit4</artifactId>
+						<version>2.17</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
 </project>
