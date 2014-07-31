@@ -60,7 +60,7 @@ public class AtributoFlex extends Atributo{
 	}
 
 	private boolean forData() {
-		return tipo.equals("java.util.Date") || tipo.equals("java.util.Calendar") || tipo.equals("br.com.sicoob.tipos.DateTime") || tipo.equals("br.com.bancoob.persistencia.types.DateTimeDB");
+		return tipo.equals("java.util.Date") || tipo.equals("java.util.Calendar") || tipo.endsWith("DateTime") || tipo.endsWith("DateTimeDB");
 	}
 	
 	private boolean forBoolean() {

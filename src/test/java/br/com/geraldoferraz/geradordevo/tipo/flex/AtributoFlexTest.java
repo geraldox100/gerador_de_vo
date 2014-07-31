@@ -117,7 +117,7 @@ public class AtributoFlexTest {
 	
 	@Test
 	public void quandoPedirTextoDoGetParaTipoDateTime() {
-		paraAtributoString("data", "br.com.sicoob.tipos.DateTime");
+		paraAtributoString("data", "br.com.geraldoferraz.tipos.DateTime");
 		String getter = atributo.getGetter();
 
 		String realGetter = "\tpublic function get data(): Date{ \n\t\treturn _data;\n\t}";
@@ -173,7 +173,7 @@ public class AtributoFlexTest {
 	
 	@Test
 	public void quandoPedirTextoDoSetDeUmTipoDateTime() {
-		paraAtributoString("data", "br.com.sicoob.tipos.DateTime");
+		paraAtributoString("data", "br.com.geraldoferraz.tipos.DateTime");
 		String setter = atributo.getSetter();
 
 		String realGetter = "\tpublic function set data(valor: Date) : void {\n\t\t_data = valor;\n\t}";
@@ -318,7 +318,7 @@ public class AtributoFlexTest {
 	
 	@Test
 	public void quandoPedirTextoImportDeUmTipoDateTime() {
-		paraAtributoString("data", "br.com.sicoob.tipos.DateTime");
+		paraAtributoString("data", "br.com.geraldoferraz.tipos.DateTime");
 		String importt = atributo.getImport();
 		assertThat(importt, equalTo(""));
 	}

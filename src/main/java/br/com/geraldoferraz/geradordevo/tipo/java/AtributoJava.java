@@ -70,8 +70,8 @@ public class AtributoJava extends Atributo {
 	}
 
 	private boolean forData() {
-		return this.tipo.equals("java.util.Calendar") || this.tipo.equals("java.util.Date") || this.tipo.equals("java.sql.Date") || this.tipo.equals("br.com.sicoob.tipos.DateTime")
-				|| this.tipo.equals("br.com.bancoob.persistencia.types.DateTimeDB");
+		return this.tipo.equals("java.util.Calendar") || this.tipo.equals("java.util.Date") || this.tipo.equals("java.sql.Date") || this.tipo.endsWith("DateTime")
+				|| this.tipo.endsWith("DateTimeDB");
 	}
 
 	@Override
