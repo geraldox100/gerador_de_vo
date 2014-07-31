@@ -1,10 +1,10 @@
 package br.com.geraldoferraz.geradordevo.tipo.java;
 
+import br.com.geraldoferraz.geradordevo.template.JavaTemplates;
 import br.com.geraldoferraz.geradordevo.tipo.Atributo;
-import br.com.geraldoferraz.geradordevo.util.JavaTemplates;
 
-public class AtributoJava extends Atributo{
-	
+public class AtributoJava extends Atributo {
+
 	private JavaTemplates templates = new JavaTemplates();
 
 	@Override
@@ -21,7 +21,7 @@ public class AtributoJava extends Atributo{
 	public String getDeclaracao() {
 		return substituirVariaveis(templates.getDeclaracaoTemplate());
 	}
-	
+
 	private String substituirVariaveis(String texto) {
 		return texto.replace("#tipo#", getTipoResolvido()).replace("#NomeCamelCase#", getNomeCamelCase()).replace("#nome#", nome);
 	}
@@ -32,49 +32,79 @@ public class AtributoJava extends Atributo{
 		int ponto = tipo.lastIndexOf(".");
 		int menor = tipo.lastIndexOf("<");
 		int maior = tipo.lastIndexOf(">");
-		if(menor > 0){
+		if (menor > 0) {
 			ponto = tipo.substring(0, menor).lastIndexOf(".");
-			String tipo2 = tipo.substring(menor+1,maior);
+			String tipo2 = tipo.substring(menor + 1, maior);
 			int pontoTipo2 = tipo2.lastIndexOf(".");
-			if(pontoTipo2 > 0)
-				tipo2 = tipo2.substring(pontoTipo2+1);
-			tipo = tipo.substring(ponto+1,menor);
-			tipo = tipo+"<"+tipo2+vo+">";
+			if (pontoTipo2 > 0)
+				tipo2 = tipo2.substring(pontoTipo2 + 1);
+			tipo = tipo.substring(ponto + 1, menor);
+			tipo = tipo + "<" + tipo2 + vo + ">";
 			ponto = -1;
 		}
-		if(ponto > 0){
-			tipo = tipo.substring(ponto+1)+vo;
+		if (ponto > 0) {
+			tipo = tipo.substring(ponto + 1) + vo;
 		}
 		return tipo;
 	}
 
 	private String resolverSeTemQueColocarVO() {
 		String vo = "";
-		if(!(this.tipo.equals("java.util.Calendar") || this.tipo.equals("java.util.Date"))){
+		if (!(forData() || forJavaLang() || forPrimitivo() || forJavaMath())) {
 			vo = "VO";
 		}
 		return vo;
 	}
-	
+
+	private boolean forPrimitivo() {
+		return tipo.equals("boolean") || tipo.equals("byte") || tipo.equals("char") || tipo.equals("short") || tipo.equals("int") || tipo.equals("long") || tipo.equals("float")
+				|| tipo.equals("double");
+	}
+
+	private boolean forJavaLang() {
+		return this.tipo.startsWith("java.lang.");
+	}
+
+	private boolean forJavaMath() {
+		return this.tipo.startsWith("java.math.");
+	}
+
+	private boolean forData() {
+		return this.tipo.equals("java.util.Calendar") || this.tipo.equals("java.util.Date") || this.tipo.equals("java.sql.Date") || this.tipo.equals("br.com.sicoob.tipos.DateTime")
+				|| this.tipo.equals("br.com.bancoob.persistencia.types.DateTimeDB");
+	}
+
 	@Override
 	public String getImport() {
-		String vo = resolverSeTemQueColocarVO();
 		String retorno = "";
-		if(tipo.contains("<") && tipo.contains(">")){
-			int menor = tipo.indexOf("<");
-			int maior = tipo.indexOf(">");
-			
-			String retorno1 = tipo.substring(0,menor);
-			String retorno2 = tipo.substring(menor+1,maior);
-			
-			retorno = templates.getImportTemplate().replace("#tipo#", retorno1);
-			retorno += templates.getImportTemplate().replace("#tipo#", retorno2+vo);
-			
-			return retorno;
-			
-		}
-		if(!tipo.startsWith("java.lang.")){
-			retorno = templates.getImportTemplate().replace("#tipo#", tipo+vo); 
+		if (!forPrimitivo()) {
+			String vo = resolverSeTemQueColocarVO();
+			if (tipo.contains("<") && tipo.contains(">")) {
+				int menor = tipo.indexOf("<");
+				int maior = tipo.indexOf(">");
+
+				String retorno1 = tipo.substring(0, menor);
+				String retorno2 = tipo.substring(menor + 1, maior);
+
+				retorno = templates.getImportTemplate().replace("#tipo#", retorno1);
+				
+				if(getPacote() != null && !getPacote().equals("")){
+					String nome = removerPacoteDoNome(retorno2);
+					retorno += templates.getImportTemplate().replace("#tipo#", getPacote() + "." + nome + vo);
+				}else{
+					retorno += templates.getImportTemplate().replace("#tipo#", retorno2 + vo);
+				}
+
+			} else if (vo != null && !vo.equals("")) {
+				if (getPacote() != null && !getPacote().equals("")) {
+					String nome = removerPacoteDoNome(this.tipo);
+					retorno = templates.getImportTemplate().replace("#tipo#", getPacote() + "." + nome + vo);
+				}else{
+					retorno = templates.getImportTemplate().replace("#tipo#", tipo + vo);
+				}
+			} else if (!(tipo.startsWith("java.lang.") || tipo.startsWith("java.math."))) {
+				retorno = templates.getImportTemplate().replace("#tipo#", tipo + vo);
+			}
 		}
 		return retorno;
 	}

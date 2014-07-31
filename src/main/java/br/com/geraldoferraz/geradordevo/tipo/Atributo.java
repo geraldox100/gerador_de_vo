@@ -4,6 +4,7 @@ public abstract class Atributo {
 
 	protected String nome;
 	protected String tipo;
+	private String pacote;
 
 	public String getNome() {
 		return nome;
@@ -46,6 +47,14 @@ public abstract class Atributo {
 			retorno = retorno+"VO";
 		}
 		return retorno;
+	}
+
+	public void setPacote(String pacote) {
+		this.pacote = pacote;
+	}
+	
+	public String getPacote() {
+		return pacote;
 	}
 
 }

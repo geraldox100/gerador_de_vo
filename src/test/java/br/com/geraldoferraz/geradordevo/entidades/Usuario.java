@@ -23,6 +23,8 @@ public class Usuario {
 	@OneToMany
 	private List<Permissao> permissoes;
 	private Ticket ticket;
+	private transient String outro_transient;
+	private static String statico;
 
 	@Transient
 	private String atributo_transient;
@@ -73,6 +75,30 @@ public class Usuario {
 
 	public void setAtributo_transient(String atributo_transient) {
 		this.atributo_transient = atributo_transient;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getOutro_transient() {
+		return outro_transient;
+	}
+
+	public void setOutro_transient(String outro_transient) {
+		this.outro_transient = outro_transient;
+	}
+
+	public static String getStatico() {
+		return statico;
+	}
+
+	public static void setStatico(String statico) {
+		Usuario.statico = statico;
 	}
 
 	@Override

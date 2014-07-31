@@ -52,6 +52,69 @@ public class AtributoJavaTest {
 		String realGetter = "\tpublic Calendar getData(){\n\t\treturn this.data;\n\t}";
 		assertThat(getter, equalTo(realGetter));
 	}
+	@Test
+	public void quandoPedirTextoDoGetDeUmTipoDateTimeDB() {
+		paraAtributoString("data", "br.com.bancoob.persistencia.types.DateTimeDB");
+		String getter = atributo.getGetter();
+
+		String realGetter = "\tpublic DateTimeDB getData(){\n\t\treturn this.data;\n\t}";
+		assertThat(getter, equalTo(realGetter));
+		
+	}
+	@Test
+	public void quandoPedirTextoDoGetDeUmTipoSQLDate() {
+		paraAtributoString("data", "java.sql.Date");
+		String getter = atributo.getGetter();
+
+		String realGetter = "\tpublic Date getData(){\n\t\treturn this.data;\n\t}";
+		assertThat(getter, equalTo(realGetter));
+		
+	}
+	
+	@Test
+	public void quandoPedirTextoDoGetDeUmTipoPrimitivo() {
+		paraAtributoString("numero", "int");
+		String intt = atributo.getGetter();
+		String intGetter = "\tpublic int getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "long");
+		String longg = atributo.getGetter();
+		String longGetter = "\tpublic long getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "double");
+		String doublee = atributo.getGetter();
+		String doubleGetter = "\tpublic double getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "byte");
+		String bytee = atributo.getGetter();
+		String byteGetter = "\tpublic byte getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "char");
+		String charr = atributo.getGetter();
+		String charGetter = "\tpublic char getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "short");
+		String shortt = atributo.getGetter();
+		String shortGetter = "\tpublic short getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "boolean");
+		String booleann = atributo.getGetter();
+		String boleanGetter = "\tpublic boolean getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "float");
+		String floatt = atributo.getGetter();
+		String floatGetter = "\tpublic float getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+
+		assertThat(intt, equalTo(intGetter));
+		assertThat(longg, equalTo(longGetter));
+		assertThat(doublee, equalTo(doubleGetter));
+		assertThat(bytee, equalTo(byteGetter));
+		assertThat(charr, equalTo(charGetter));
+		assertThat(shortt, equalTo(shortGetter));
+		assertThat(booleann, equalTo(boleanGetter));
+		assertThat(floatt, equalTo(floatGetter));
+	}
 	
 	@Test
 	public void quandoPedirTextoDoGetDeUmTipoDate() {
@@ -63,7 +126,7 @@ public class AtributoJavaTest {
 	}
 	
 	@Test
-	public void quandoPedirTextoDoGetParaTipoGenerico() {
+	public void quandoPedirTextoDoGetDeTipoGenerico() {
 		Atributo atributo = new AtributoJava();
 		atributo.setNome("permissoes");
 		atributo.setTipo("java.util.List<br.com.entidades.Permissao>");
@@ -82,6 +145,15 @@ public class AtributoJavaTest {
 	}
 	
 	@Test
+	public void quandoPedirTextoDoSetParaUmTipoDateTimeDB() {
+		paraAtributoString("data", "br.com.bancoob.persistencia.types.DateTimeDB");
+		String setter = atributo.getSetter();
+
+		String realGetter = "\tpublic void setData(DateTimeDB data){\n\t\tthis.data = data;\n\t}";
+		assertThat(setter, equalTo(realGetter));
+	}
+	
+	@Test
 	public void quandoPedirTextoDoSetParaUmTipoCalendar() {
 		paraAtributoString("data", "java.util.Calendar");
 		String setter = atributo.getSetter();
@@ -91,8 +163,107 @@ public class AtributoJavaTest {
 	}
 	
 	@Test
+	public void quandoPedirTextoDoGetParaUmTipoPrimitivo(){
+		paraAtributoString("numero", "int");
+		String intt = atributo.getGetter();
+		String intGetter = "\tpublic int getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "long");
+		String longg = atributo.getGetter();
+		String longGetter = "\tpublic long getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "double");
+		String doublee = atributo.getGetter();
+		String doubleGetter = "\tpublic double getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "byte");
+		String bytee = atributo.getGetter();
+		String byteGetter = "\tpublic byte getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "char");
+		String charr = atributo.getGetter();
+		String charGetter = "\tpublic char getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "short");
+		String shortt = atributo.getGetter();
+		String shortGetter = "\tpublic short getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "boolean");
+		String booleann = atributo.getGetter();
+		String boleanGetter = "\tpublic boolean getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+		paraAtributoString("numero", "float");
+		String floatt = atributo.getGetter();
+		String floatGetter = "\tpublic float getNumero(){\n\t\treturn this.numero;\n\t}";
+		
+
+		assertThat(intt, equalTo(intGetter));
+		assertThat(longg, equalTo(longGetter));
+		assertThat(doublee, equalTo(doubleGetter));
+		assertThat(bytee, equalTo(byteGetter));
+		assertThat(charr, equalTo(charGetter));
+		assertThat(shortt, equalTo(shortGetter));
+		assertThat(booleann, equalTo(boleanGetter));
+		assertThat(floatt, equalTo(floatGetter));
+	}
+	
+	@Test
+	public void quandoPedirTextoDoSetParaUmTipoPrimitivo() {
+		paraAtributoString("data", "int");
+		String intt = atributo.getSetter();
+		String intSetter = "\tpublic void setData(int data){\n\t\tthis.data = data;\n\t}";
+		
+		paraAtributoString("data", "long");
+		String longg = atributo.getSetter();
+		String longSetter = "\tpublic void setData(long data){\n\t\tthis.data = data;\n\t}";
+		
+		paraAtributoString("data", "double");
+		String doublee = atributo.getSetter();
+		String doubleSetter = "\tpublic void setData(double data){\n\t\tthis.data = data;\n\t}";
+		
+		paraAtributoString("data", "byte");
+		String bytee = atributo.getSetter();
+		String byteSetter = "\tpublic void setData(byte data){\n\t\tthis.data = data;\n\t}";
+		
+		paraAtributoString("data", "char");
+		String charr = atributo.getSetter();
+		String charSetter = "\tpublic void setData(char data){\n\t\tthis.data = data;\n\t}";
+		
+		paraAtributoString("data", "short");
+		String shortt = atributo.getSetter();
+		String shortSetter = "\tpublic void setData(short data){\n\t\tthis.data = data;\n\t}";
+		
+		paraAtributoString("data", "boolean");
+		String booleann = atributo.getSetter();
+		String boleanSetter = "\tpublic void setData(boolean data){\n\t\tthis.data = data;\n\t}";
+		
+		paraAtributoString("data", "float");
+		String floatt = atributo.getSetter();
+		String floatSetter = "\tpublic void setData(float data){\n\t\tthis.data = data;\n\t}";
+		
+		
+		assertThat(intt, equalTo(intSetter));
+		assertThat(longg, equalTo(longSetter));
+		assertThat(doublee, equalTo(doubleSetter));
+		assertThat(bytee, equalTo(byteSetter));
+		assertThat(charr, equalTo(charSetter));
+		assertThat(shortt, equalTo(shortSetter));
+		assertThat(booleann, equalTo(boleanSetter));
+		assertThat(floatt, equalTo(floatSetter));
+	}
+	
+	@Test
 	public void quandoPedirTextoDoSetParaUmTipoDate() {
 		paraAtributoString("data", "java.util.Date");
+		String setter = atributo.getSetter();
+
+		String realGetter = "\tpublic void setData(Date data){\n\t\tthis.data = data;\n\t}";
+		assertThat(setter, equalTo(realGetter));
+	}
+	
+	@Test
+	public void quandoPedirTextoDoSetParaUmTipoSQLDate() {
+		paraAtributoString("data", "java.sql.Date");
 		String setter = atributo.getSetter();
 
 		String realGetter = "\tpublic void setData(Date data){\n\t\tthis.data = data;\n\t}";
@@ -148,13 +319,31 @@ public class AtributoJavaTest {
 		String realGetter = "\tpublic Integer getLogin(){\n\t\treturn this.login;\n\t}";
 		assertThat(getter, equalTo(realGetter));
 	}
+	
+	@Test
+	public void quandoPedirTextoDoGetDeUmJavaMath() {
+		paraAtributoString("login", "java.math.BigDecimal");
+		String getter = atributo.getGetter();
+
+		String realGetter = "\tpublic BigDecimal getLogin(){\n\t\treturn this.login;\n\t}";
+		assertThat(getter, equalTo(realGetter));
+	}
 
 	@Test
-	public void quandoPedirTextoDoSetDeUmTipoInteger() {
+	public void quandoPedirTextoDoSetParaUmTipoInteger() {
 		paraAtributoString("login", "Integer");
 		String setter = atributo.getSetter();
 
 		String realGetter = "\tpublic void setLogin(Integer login){\n\t\tthis.login = login;\n\t}";
+		assertThat(setter, equalTo(realGetter));
+	}
+	
+	@Test
+	public void quandoPedirTextoDoSetParaUmTipoJavaMath() {
+		paraAtributoString("login", "java.math.BigDecimal");
+		String setter = atributo.getSetter();
+
+		String realGetter = "\tpublic void setLogin(BigDecimal login){\n\t\tthis.login = login;\n\t}";
 		assertThat(setter, equalTo(realGetter));
 	}
 
@@ -187,12 +376,131 @@ public class AtributoJavaTest {
 	}
 	
 	@Test
+	public void quandoPedirTextoDoImportDeUmDateTimeDB() {
+		paraAtributoString("data", "br.com.bancoob.persistencia.types.DateTimeDB");
+		String importt = atributo.getImport();
+		assertThat(importt, equalTo("import br.com.bancoob.persistencia.types.DateTimeDB;\n"));
+		
+	}
+	
+	@Test
 	public void quandoPedirTextoDoImportDeUmDate() {
 		paraAtributoString("data", "java.util.Date");
 		String importt = atributo.getImport();
 		assertThat(importt, equalTo("import java.util.Date;\n"));
 	}
 	
+	@Test
+	public void quandoPedirTextoDoImportDeUmSQLDate() {
+		paraAtributoString("data", "java.sql.Date");
+		String importt = atributo.getImport();
+		assertThat(importt, equalTo("import java.sql.Date;\n"));
+	}
 	
+	
+	@Test
+	public void quandoPedirTextoDoImportDeUmTipoPrimitivo() {
+
+		paraAtributoString("numero", "int");
+		String intt = atributo.getImport();
+		
+		paraAtributoString("numero", "long");
+		String longg = atributo.getImport();
+		
+		paraAtributoString("numero", "double");
+		String doublee = atributo.getImport();
+		
+		paraAtributoString("numero", "byte");
+		String bytee = atributo.getImport();
+		
+		paraAtributoString("numero", "char");
+		String charr = atributo.getImport();
+		
+		paraAtributoString("numero", "short");
+		String shortt = atributo.getImport();
+		
+		paraAtributoString("numero", "boolean");
+		String booleann = atributo.getImport();
+		
+		paraAtributoString("numero", "float");
+		String floatt = atributo.getImport();
+		
+		String vazia = "";
+
+		assertThat(intt, equalTo(vazia));
+		assertThat(longg, equalTo(vazia));
+		assertThat(doublee, equalTo(vazia));
+		assertThat(bytee, equalTo(vazia));
+		assertThat(charr, equalTo(vazia));
+		assertThat(shortt, equalTo(vazia));
+		assertThat(booleann, equalTo(vazia));
+		assertThat(floatt, equalTo(vazia));
+		
+		
+	}
+	
+	@Test
+	public void quandoPedirTextoImportDeUmTipoWrapper() {
+		paraAtributoString("data", "java.lang.Boolean");
+		String wrapperBoolean = atributo.getImport();
+		
+		paraAtributoString("data", "java.lang.Byte");
+		String wrapperByte = atributo.getImport();
+		
+		paraAtributoString("data", "java.lang.Character");
+		String wrapperCharacter = atributo.getImport();
+		
+		paraAtributoString("data", "java.lang.Short");
+		String wrapperShort = atributo.getImport();
+		
+		paraAtributoString("data", "java.lang.Integer");
+		String wrapperInteger = atributo.getImport();
+		
+		paraAtributoString("data", "java.lang.Long");
+		String wrapperLong = atributo.getImport();
+		
+		paraAtributoString("data", "java.lang.Float");
+		String wrapperFloat = atributo.getImport();
+		
+		paraAtributoString("data", "java.lang.Double");
+		String wrapperDouble = atributo.getImport();
+		
+		paraAtributoString("data", "java.math.BigInteger");
+		String wrapperBigInteger = atributo.getImport();
+		
+		paraAtributoString("data", "java.math.BigDecimal");
+		String wrapperBigDecimal = atributo.getImport();
+		
+		assertThat(wrapperBoolean, equalTo(""));
+		assertThat(wrapperByte, equalTo(""));
+		assertThat(wrapperCharacter, equalTo(""));
+		assertThat(wrapperShort, equalTo(""));
+		assertThat(wrapperInteger, equalTo(""));
+		assertThat(wrapperLong, equalTo(""));
+		assertThat(wrapperFloat, equalTo(""));
+		assertThat(wrapperDouble, equalTo(""));
+		assertThat(wrapperBigInteger, equalTo(""));
+		assertThat(wrapperBigDecimal, equalTo(""));
+	}
+	
+	@Test
+	public void quandoPedirTextoDoImportDeUmTipoVO() {
+		paraAtributoString("permissao", "br.com.geraldoferraz.Permissao");
+		atributo.setPacote("br.com.geraldoferraz.vo");
+		String importt = atributo.getImport();
+
+		assertThat(importt, equalTo("import br.com.geraldoferraz.vo.PermissaoVO;\n"));
+	}
+	
+	@Test
+	public void quandoPedirTextoDoImportDeUmTipoVOGenerico() {
+		paraAtributoString("permissao", "java.util.List<br.com.entidades.Permissao>");
+		atributo.setPacote("br.com.geraldoferraz.vo");
+		String importt = atributo.getImport();
+
+		assertThat(importt, equalTo("import java.util.List;\nimport br.com.geraldoferraz.vo.PermissaoVO;\n"));
+		
+
+	}
 
 }

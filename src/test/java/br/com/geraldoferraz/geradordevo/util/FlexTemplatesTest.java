@@ -5,11 +5,13 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+import br.com.geraldoferraz.geradordevo.template.FlexTemplates;
+
 public class FlexTemplatesTest {
 	
 	private FlexTemplates templates = new FlexTemplates();
 	
-	private static final String CLASS_TEMPLATE="#importpublic class #nome {\n\n#atributos\n#metodos}";
+	private static final String CLASS_TEMPLATE="#package#importpublic class #nome #extends{\n\n#atributos\n#metodos}";
 	private static final String GETTER_TEMPLATE = "\tpublic function get #nome#(): #tipo#{ \n\t\treturn _#nome#;\n\t}";
 	private static final String SETTER_TEMPLATE = "\tpublic function set #nome#(valor: #tipo#) : void {\n\t\t_#nome# = valor;\n\t}";
 	private static final String DECLARACAO_TEMPLATE = "\tprivate var _#nome# : #tipo#;\n";
