@@ -11,7 +11,7 @@ public class JavaTemplatesTest {
 	
 	private JavaTemplates templates = new JavaTemplates();
 	
-	private static final String CLASS_TEMPLATE="#package#importpublic class #nome #extends{\n\n\tprivate static final long serialVersionUID = 1L;#atributos\n#metodos}";
+	private static final String CLASS_TEMPLATE="#package#importpublic class #nome #extends{\n\n\tprivate static final long serialVersionUID = 1L;\n\n#atributos\n#metodos}";
 	private static final String GETTER_TEMPLATE = "\tpublic #tipo# get#NomeCamelCase#(){\n\t\treturn this.#nome#;\n\t}";
 	private static final String SETTER_TEMPLATE = "\tpublic void set#NomeCamelCase#(#tipo# #nome#){\n\t\tthis.#nome# = #nome#;\n\t}";
 	private static final String DECLARACAO_TEMPLATE = "\tprivate #tipo# #nome#;\n";

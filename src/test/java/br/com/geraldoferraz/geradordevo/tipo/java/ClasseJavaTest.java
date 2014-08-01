@@ -74,7 +74,7 @@ public class ClasseJavaTest {
 		classe.adicionarAtributo(montarAtributo());
 		String textoDaClasse = classe.getTextoDaClasse();
 		
-		String realClass = "public class UsuarioVO {\n\n\tprivate String login;\n\n\tpublic String getLogin(){\n\t\treturn this.login;\n\t}\n\n\tpublic void setLogin(String login){\n\t\tthis.login = login;\n\t}\n\n}";
+		String realClass = "public class UsuarioVO {\n\n\tprivate static final long serialVersionUID = 1L;\n\n\tprivate String login;\n\n\tpublic String getLogin(){\n\t\treturn this.login;\n\t}\n\n\tpublic void setLogin(String login){\n\t\tthis.login = login;\n\t}\n\n}";
 		
 		assertThat(textoDaClasse, equalTo(realClass));
 	}
@@ -85,7 +85,7 @@ public class ClasseJavaTest {
 		classe.adicionarAtributo(montarAtributo("idade","java.lang.Integer"));
 		String textoDaClasse = classe.getTextoDaClasse();
 		
-		String realClass = "public class UsuarioVO {\n\n\tprivate String login;\n\tprivate Integer idade;\n\n\tpublic String getLogin(){\n\t\treturn this.login;\n\t}\n\n\tpublic void setLogin(String login){\n\t\tthis.login = login;\n\t}\n\n\tpublic Integer getIdade(){\n\t\treturn this.idade;\n\t}\n\n\tpublic void setIdade(Integer idade){\n\t\tthis.idade = idade;\n\t}\n\n}";
+		String realClass = "public class UsuarioVO {\n\n\tprivate static final long serialVersionUID = 1L;\n\n\tprivate String login;\n\tprivate Integer idade;\n\n\tpublic String getLogin(){\n\t\treturn this.login;\n\t}\n\n\tpublic void setLogin(String login){\n\t\tthis.login = login;\n\t}\n\n\tpublic Integer getIdade(){\n\t\treturn this.idade;\n\t}\n\n\tpublic void setIdade(Integer idade){\n\t\tthis.idade = idade;\n\t}\n\n}";
 		
 		assertThat(textoDaClasse, equalTo(realClass));
 	}
@@ -97,7 +97,7 @@ public class ClasseJavaTest {
 		classe.adicionarAtributo(montarAtributo("permissao","br.com.geraldoferraz.geradordevo.entidades.Permissao"));
 		String textoDaClasse = classe.getTextoDaClasse();
 		
-		String realClass = "import br.com.geraldoferraz.geradordevo.entidades.PermissaoVO;\n\npublic class UsuarioVO {\n\n\tprivate String login;\n\tprivate Integer idade;\n\tprivate PermissaoVO permissao;\n\n\tpublic String getLogin(){\n\t\treturn this.login;\n\t}\n\n\tpublic void setLogin(String login){\n\t\tthis.login = login;\n\t}\n\n\tpublic Integer getIdade(){\n\t\treturn this.idade;\n\t}\n\n\tpublic void setIdade(Integer idade){\n\t\tthis.idade = idade;\n\t}\n\n\tpublic PermissaoVO getPermissao(){\n\t\treturn this.permissao;\n\t}\n\n\tpublic void setPermissao(PermissaoVO permissao){\n\t\tthis.permissao = permissao;\n\t}\n\n}";
+		String realClass = "import br.com.geraldoferraz.geradordevo.entidades.PermissaoVO;\n\npublic class UsuarioVO {\n\n\tprivate static final long serialVersionUID = 1L;\n\n\tprivate String login;\n\tprivate Integer idade;\n\tprivate PermissaoVO permissao;\n\n\tpublic String getLogin(){\n\t\treturn this.login;\n\t}\n\n\tpublic void setLogin(String login){\n\t\tthis.login = login;\n\t}\n\n\tpublic Integer getIdade(){\n\t\treturn this.idade;\n\t}\n\n\tpublic void setIdade(Integer idade){\n\t\tthis.idade = idade;\n\t}\n\n\tpublic PermissaoVO getPermissao(){\n\t\treturn this.permissao;\n\t}\n\n\tpublic void setPermissao(PermissaoVO permissao){\n\t\tthis.permissao = permissao;\n\t}\n\n}";
 		
 		assertThat(textoDaClasse, equalTo(realClass));
 	}
@@ -109,7 +109,7 @@ public class ClasseJavaTest {
 		classe.adicionarAtributo(montarAtributo("permissao2","br.com.geraldoferraz.geradordevo.entidades.Permissao"));
 		String textoDaClasse = classe.getTextoDaClasse();
 		
-		String realClass = "import br.com.geraldoferraz.geradordevo.entidades.PermissaoVO;\n\npublic class UsuarioVO {\n\n\tprivate PermissaoVO permissao1;\n\tprivate PermissaoVO permissao2;\n\n\tpublic PermissaoVO getPermissao1(){\n\t\treturn this.permissao1;\n\t}\n\n\tpublic void setPermissao1(PermissaoVO permissao1){\n\t\tthis.permissao1 = permissao1;\n\t}\n\n\tpublic PermissaoVO getPermissao2(){\n\t\treturn this.permissao2;\n\t}\n\n\tpublic void setPermissao2(PermissaoVO permissao2){\n\t\tthis.permissao2 = permissao2;\n\t}\n\n}";
+		String realClass = "import br.com.geraldoferraz.geradordevo.entidades.PermissaoVO;\n\npublic class UsuarioVO {\n\n\tprivate static final long serialVersionUID = 1L;\n\n\tprivate PermissaoVO permissao1;\n\tprivate PermissaoVO permissao2;\n\n\tpublic PermissaoVO getPermissao1(){\n\t\treturn this.permissao1;\n\t}\n\n\tpublic void setPermissao1(PermissaoVO permissao1){\n\t\tthis.permissao1 = permissao1;\n\t}\n\n\tpublic PermissaoVO getPermissao2(){\n\t\treturn this.permissao2;\n\t}\n\n\tpublic void setPermissao2(PermissaoVO permissao2){\n\t\tthis.permissao2 = permissao2;\n\t}\n\n}";
 		
 		assertThat(textoDaClasse, equalTo(realClass));
 	}
@@ -120,7 +120,7 @@ public class ClasseJavaTest {
 		classe.definirHierarQuia(Permissao.class.getName());
 		String textoDaClasse = classe.getTextoDaClasse();
 		
-		String realClass = "import br.com.geraldoferraz.geradordevo.entidades.Permissao;\n\npublic class UsuarioVO extends Permissao{\n\n\tprivate int idade;\n\n\tpublic int getIdade(){\n\t\treturn this.idade;\n\t}\n\n\tpublic void setIdade(int idade){\n\t\tthis.idade = idade;\n\t}\n\n}";
+		String realClass = "import br.com.geraldoferraz.geradordevo.entidades.Permissao;\n\npublic class UsuarioVO extends Permissao{\n\n\tprivate static final long serialVersionUID = 1L;\n\n\tprivate int idade;\n\n\tpublic int getIdade(){\n\t\treturn this.idade;\n\t}\n\n\tpublic void setIdade(int idade){\n\t\tthis.idade = idade;\n\t}\n\n}";
 		
 		assertThat(textoDaClasse, equalTo(realClass));
 	}
@@ -130,7 +130,7 @@ public class ClasseJavaTest {
 		classe.setPacote("br.com.geraldoferraz.vo");
 		String textoDaClasse = classe.getTextoDaClasse();
 		
-		String realClass = "package br.com.geraldoferraz.vo;\n\npublic class UsuarioVO {\n\n\n}";
+		String realClass = "package br.com.geraldoferraz.vo;\n\npublic class UsuarioVO {\n\n\tprivate static final long serialVersionUID = 1L;\n\n\n}";
 		
 		assertThat(textoDaClasse, equalTo(realClass));
 	}
