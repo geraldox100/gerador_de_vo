@@ -49,33 +49,14 @@
 			<version>1.4.11</version>
 		</dependency>
 
-		<!-- dependencias sicoob -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
 			<version>3.2.6</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>br.com.sicoob.framework</groupId>
-			<artifactId>sicoob-java</artifactId>
-			<version>1.0.0.7</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>br.com.sicoob.cta</groupId>
-			<artifactId>seguranca-ejb</artifactId>
-			<version>1.0.1.22-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>br.com.sicoob.cta</groupId>
-			<artifactId>cta-acesso-ejb</artifactId>
-			<version>1.0.1.22-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+		
+		
 
 	<build>
 		<plugins>
