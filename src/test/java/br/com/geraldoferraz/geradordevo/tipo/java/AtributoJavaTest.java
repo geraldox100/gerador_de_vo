@@ -54,7 +54,7 @@ public class AtributoJavaTest {
 	}
 	@Test
 	public void quandoPedirTextoDoGetDeUmTipoDateTimeDB() {
-		paraAtributoString("data", "br.com.bancoob.persistencia.types.DateTimeDB");
+		paraAtributoString("data", "br.com.geraldoferraz.persistencia.types.DateTimeDB");
 		String getter = atributo.getGetter();
 
 		String realGetter = "\tpublic DateTimeDB getData(){\n\t\treturn this.data;\n\t}";
@@ -146,7 +146,7 @@ public class AtributoJavaTest {
 	
 	@Test
 	public void quandoPedirTextoDoSetParaUmTipoDateTimeDB() {
-		paraAtributoString("data", "br.com.bancoob.persistencia.types.DateTimeDB");
+		paraAtributoString("data", "br.com.geraldoferraz.persistencia.types.DateTimeDB");
 		String setter = atributo.getSetter();
 
 		String realGetter = "\tpublic void setData(DateTimeDB data){\n\t\tthis.data = data;\n\t}";
@@ -377,9 +377,9 @@ public class AtributoJavaTest {
 	
 	@Test
 	public void quandoPedirTextoDoImportDeUmDateTimeDB() {
-		paraAtributoString("data", "br.com.bancoob.persistencia.types.DateTimeDB");
+		paraAtributoString("data", "br.com.geraldoferraz.persistencia.types.DateTimeDB");
 		String importt = atributo.getImport();
-		assertThat(importt, equalTo("import br.com.bancoob.persistencia.types.DateTimeDB;\n"));
+		assertThat(importt, equalTo("import br.com.geraldoferraz.persistencia.types.DateTimeDB;\n"));
 		
 	}
 	

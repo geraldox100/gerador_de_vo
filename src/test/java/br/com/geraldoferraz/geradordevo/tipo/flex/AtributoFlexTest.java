@@ -126,7 +126,7 @@ public class AtributoFlexTest {
 	
 	@Test
 	public void quandoPedirTextoDoGetParaTipoDateTimeDB() {
-		paraAtributoString("data", "br.com.bancoob.persistencia.types.DateTimeDB");
+		paraAtributoString("data", "br.com.geraldoferraz.persistencia.types.DateTimeDB");
 		String getter = atributo.getGetter();
 
 		String realGetter = "\tpublic function get data(): Date{ \n\t\treturn _data;\n\t}";

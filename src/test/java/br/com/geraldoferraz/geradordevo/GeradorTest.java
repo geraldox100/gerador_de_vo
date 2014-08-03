@@ -11,7 +11,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.bancoob.acesso.negocio.vo.AcessoVO;
+import br.com.geraldoferraz.geradordevo.entidades.HierarquiaVO;
 import br.com.geraldoferraz.geradordevo.modo.ModoDeGeracao;
 
 
@@ -49,10 +49,10 @@ public class GeradorTest {
 	public static void main(String[] args) {
 		
 		Gerador gerador = new Gerador();
-		gerador.buscarEntidadesEm("br.com.bancoob.seguranca.negocio.entidades");
+		gerador.buscarEntidadesEm("br.com.geraldoferraz.geradordevo.entidades");
 		
-		ModoDeGeracao java = java().definirHierarquia(AcessoVO.class).definirPacote("br.com.geraldoferraz.geradordevo.gerados.vo.java");
-		ModoDeGeracao flex = flex().definirHierarquia("br.com.bancoob.sisbr.cta.cadastro.vo.AcessoEntidadeVO").definirPacote("br.com.geraldoferraz.geradordevo.gerados.vo.flex");
+		ModoDeGeracao java = java().definirHierarquia(HierarquiaVO.class).definirPacote("br.com.geraldoferraz.geradordevo.gerados.vo.java");
+		ModoDeGeracao flex = flex().definirHierarquia("br.com.geraldoferraz.geradordevo.entidades").definirPacote("br.com.geraldoferraz.geradordevo.gerados.vo.flex");
 		
 		Map<String,String> javas = gerador.gerar(java);
 		Map<String,String> flexes = gerador.gerar(flex);

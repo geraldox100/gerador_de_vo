@@ -51,10 +51,10 @@
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate</artifactId>
-			<version>3.2.6</version>
-			<scope>provided</scope>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>LATEST</version>
 		</dependency>
+
 	</dependencies>
 
 
