@@ -5,17 +5,17 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import br.com.geraldoferraz.geradordevo.template.JavaTemplates;
+import br.com.geraldoferraz.geradordevo.template.FlexVOTemplates;
 
-public class JavaTemplatesTest {
+public class FlexVOTemplatesTest {
 	
-	private JavaTemplates templates = new JavaTemplates();
+	private FlexVOTemplates templates = new FlexVOTemplates();
 	
-	private static final String CLASS_TEMPLATE="#package#importpublic class #nome #extends{\n\n\tprivate static final long serialVersionUID = 1L;\n\n#atributos\n#metodos}";
-	private static final String GETTER_TEMPLATE = "\tpublic #tipo# get#NomeCamelCase#(){\n\t\treturn this.#nome#;\n\t}";
-	private static final String SETTER_TEMPLATE = "\tpublic void set#NomeCamelCase#(#tipo# #nome#){\n\t\tthis.#nome# = #nome#;\n\t}";
-	private static final String DECLARACAO_TEMPLATE = "\tprivate #tipo# #nome#;\n";
-	private static final String IMPORT_TEMPLATE = "import #tipo#;\n";
+	private static final String CLASS_TEMPLATE="#package#importpublic class #nomeVO #extends{\n\n#atributos\n#metodos}";
+	private static final String GETTER_TEMPLATE = "\tpublic function get #nome#(): #tipo{ \n\t\treturn _#nome#;\n\t}";
+	private static final String SETTER_TEMPLATE = "\tpublic function set #nome#(valor: #tipo) : void {\n\t\t_#nome# = valor;\n\t}";
+	private static final String DECLARACAO_TEMPLATE = "\tprivate var _#nome# : #tipo;\n";
+	private static final String IMPORT_TEMPLATE = "import #tipo;\n";
 	
 	@Test
 	public void quandoPedirTemplateDeClasse(){

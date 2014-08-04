@@ -29,25 +29,8 @@ public abstract class Atributo {
 	public abstract String getDeclaracao();
 
 	public abstract String getImport();
-
-	protected String removerPacoteDoNome(String nomeClasse) {
-		int ponto = nomeClasse.lastIndexOf(".");
-		if (ponto > 0) {
-			nomeClasse = nomeClasse.substring(ponto + 1);
-		}
-		return nomeClasse;
-	}
-
-	protected String getNomeCamelCase() {
-		
-		String primeiraLetra = nome.charAt(0) + "";
-		String retorno = primeiraLetra.toUpperCase() + nome.substring(1);
-		
-		if(nome.startsWith("java.lang")){
-			retorno = retorno+"VO";
-		}
-		return retorno;
-	}
+	
+	
 
 	public void setPacote(String pacote) {
 		this.pacote = pacote;

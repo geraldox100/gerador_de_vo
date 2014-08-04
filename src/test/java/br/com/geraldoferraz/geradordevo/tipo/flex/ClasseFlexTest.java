@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.geraldoferraz.geradordevo.entidades.Permissao;
-import br.com.geraldoferraz.geradordevo.template.FlexTemplates;
+import br.com.geraldoferraz.geradordevo.template.FlexVOTemplates;
 import br.com.geraldoferraz.geradordevo.tipo.Atributo;
 import br.com.geraldoferraz.geradordevo.tipo.Classe;
 
@@ -24,13 +24,8 @@ public class ClasseFlexTest {
 	@Before
 	public void beforeVO() {
 		classe = new Classe();
-		classe.setTemplate(new FlexTemplates());
+		classe.setTemplate(new FlexVOTemplates());
 		classe.setNome("br.com.entidade.Usuario");
-	}
-
-	@Test
-	public void quandoPerguntarNomeDaClasseDeveSerVO() {
-		assertThat(classe.getNome(), equalTo("br.com.entidade.UsuarioVO"));
 	}
 
 	@Test

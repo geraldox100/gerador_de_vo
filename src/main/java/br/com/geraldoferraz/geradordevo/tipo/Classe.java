@@ -9,6 +9,7 @@ public class Classe {
 
 	protected String nome;
 	protected List<Atributo> atributos = new ArrayList<Atributo>();
+	protected List<Metodo> metodos = new ArrayList<Metodo>();
 	private String hierarquia;
 	private String pacote;
 	private Template template;
@@ -18,13 +19,15 @@ public class Classe {
 	}
 
 	public void setNome(String nome) {
-		if (!nome.endsWith("VO"))
-			nome = nome + "VO";
 		this.nome = nome;
 	}
 
 	public List<Atributo> getAtributos() {
 		return new ArrayList<Atributo>(atributos);
+	}
+	
+	public List<Metodo> getMetodos() {
+		return new ArrayList<Metodo>(metodos);
 	}
 
 	public void adicionarAtributo(Atributo atributo) {
@@ -44,6 +47,7 @@ public class Classe {
 		StringBuilder classBuilder = new StringBuilder(template.getClassTemplate());
 		StringBuilder importBuilder = new StringBuilder();
 		StringBuilder atributoBuilder = new StringBuilder();
+		StringBuilder metodosGettersESettersBuilder = new StringBuilder();
 		StringBuilder metodosBuilder = new StringBuilder();
 
 		for (Atributo atributo : atributos) {
@@ -54,10 +58,20 @@ public class Classe {
 
 			atributoBuilder.append(atributo.getDeclaracao());
 
-			metodosBuilder.append(atributo.getGetter());
+			metodosGettersESettersBuilder.append(atributo.getGetter());
+			metodosGettersESettersBuilder.append("\n\n");
+			metodosGettersESettersBuilder.append(atributo.getSetter());
+			metodosGettersESettersBuilder.append("\n\n");
+			
+		}
+		
+		for (Metodo metodo : metodos) {
+			metodosBuilder.append(metodo.getTexto());
 			metodosBuilder.append("\n\n");
-			metodosBuilder.append(atributo.getSetter());
-			metodosBuilder.append("\n\n");
+			String importt = metodo.getImport();
+			if (importt.length() > 0 && importBuilder.indexOf(importt) < 0) {
+				importBuilder.append(importt);
+			}
 		}
 		String packagee = "";
 		if(pacote != null){
@@ -66,14 +80,14 @@ public class Classe {
 		String extendss = "";
 		if(hierarquia != null){
 			extendss = "extends "+removerPacoteDoNome(hierarquia);
-			importBuilder.append(template.getImportTemplate().replace("#tipo#", hierarquia));
+			importBuilder.append(template.getImportTemplate().replace("#tipo", hierarquia));
 		}
 		if (importBuilder.length() > 0) {
 			importBuilder.append("\n");
 		}
 		String importt = importBuilder.toString();
 		String atributos = atributoBuilder.toString();
-		String metodos = metodosBuilder.toString();
+		String metodos = metodosGettersESettersBuilder.toString()+metodosBuilder.toString();
 		String clazz = classBuilder.toString();
 		String nome = this.nome;
 		int ponto = nome.lastIndexOf(".");
@@ -104,6 +118,10 @@ public class Classe {
 
 	public String getExtesao() {
 		return template.getExtensao();
+	}
+
+	public void adicionarMetodo(Metodo metodo) {
+		this.metodos.add(metodo);
 	}
 
 }

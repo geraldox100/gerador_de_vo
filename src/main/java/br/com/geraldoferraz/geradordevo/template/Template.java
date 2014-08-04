@@ -13,4 +13,6 @@ public interface Template {
 	public String getImportTemplate();
 
 	public String getExtensao();
+	
+	public String getMetodoTemplate();
 }

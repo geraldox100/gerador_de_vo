@@ -1,11 +1,13 @@
 package br.com.geraldoferraz.geradordevo.tipo.flex;
 
-import br.com.geraldoferraz.geradordevo.template.FlexTemplates;
+import static br.com.geraldoferraz.geradordevo.util.Util.*;
+import br.com.geraldoferraz.geradordevo.template.FlexVOTemplates;
 import br.com.geraldoferraz.geradordevo.tipo.Atributo;
+import br.com.geraldoferraz.geradordevo.util.Util;
 
 public class AtributoFlex extends Atributo{
 	
-	private FlexTemplates template = new FlexTemplates();
+	private FlexVOTemplates template = new FlexVOTemplates();
 
 	@Override
 	public String getGetter() {
@@ -24,9 +26,8 @@ public class AtributoFlex extends Atributo{
 
 	@Override
 	public String getImport() {
-		String retorno = template.getImportTemplate().replace("#tipo#", resolverPrimitivo(getTipo()));
-		if(getTipo().startsWith("java.lang") || 
-				forData() || forBoolean() || forCharOuCharacter() || forPrimitivoNumerico() || forWrapperNumerico()){
+		String retorno = template.getImportTemplate().replace("#tipo", getTipoFlex(getTipo()));
+		if(!deveColocarImportNoFlex(getTipo())){
 			retorno = "";
 		}
 		
@@ -34,52 +35,15 @@ public class AtributoFlex extends Atributo{
 	}
 	
 	private String substituirVariaveis(String texto) {
-		return texto.replace("#tipo#", getTipoResolvido()).replace("#nome#", getNome());
+		return texto.replace("#tipo", getTipoResolvido()).replace("#nome#", getNome());
 	}
 
 	private String getTipoResolvido() {
-		String tipo = resolverPrimitivo(getTipo());
-		return removerPacoteDoNome(tipo);
+		String tipo = getTipoFlex(getTipo());
+		return Util.removerPacoteDoNome(tipo);
 	}
 	
-	private String resolverPrimitivo(String tipo) {
-		if(forWrapperNumerico() || forPrimitivoNumerico()){
-			tipo = "Number";
-		}else if(forCharOuCharacter()){
-			tipo = "String";
-		}else if(forBoolean()){
-			tipo = "Boolean";
-		}else if(tipo.startsWith("java.util.List")){
-			tipo = "mx.collections.ListCollectionView";
-		}else if(forData()){
-			tipo = "Date";
-		}else if(!tipo.startsWith("java.lang.String")){
-			tipo = tipo+"VO";
-		}
-		return tipo;
-	}
-
-	private boolean forData() {
-		return tipo.equals("java.util.Date") || tipo.equals("java.util.Calendar") || tipo.endsWith("DateTime") || tipo.endsWith("DateTimeDB");
-	}
 	
-	private boolean forBoolean() {
-		return tipo.equals("boolean") || tipo.equals("java.lang.Boolean");
-	}
-
-	private boolean forCharOuCharacter() {
-		return tipo.equals("char") || tipo.equals("java.lang.Character");
-	}
-
-	private boolean forPrimitivoNumerico() {
-		return tipo.equals("byte") || tipo.equals("short") || tipo.equals("int") || tipo.equals("long") || tipo.equals("float")
-				|| tipo.equals("double");
-	}
-	
-	private boolean forWrapperNumerico() {
-		return tipo.equals("java.lang.Byte") || tipo.equals("java.lang.Short") || tipo.equals("java.lang.Integer") || tipo.equals("java.lang.Long") || tipo.equals("java.lang.Float")
-				|| tipo.equals("java.lang.Double");
-	}
 	
 
 }

@@ -3,6 +3,7 @@ package br.com.geraldoferraz.geradordevo;
 import static br.com.geraldoferraz.scanyourpath.searches.filters.arguments.SearchArguments.annotedOnClassWith;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
@@ -15,7 +16,9 @@ import javax.persistence.Transient;
 import br.com.geraldoferraz.geradordevo.modo.ModoDeGeracao;
 import br.com.geraldoferraz.geradordevo.tipo.Atributo;
 import br.com.geraldoferraz.geradordevo.tipo.Classe;
+import br.com.geraldoferraz.geradordevo.tipo.Metodo;
 import br.com.geraldoferraz.scanyourpath.Scanner;
+import br.com.geraldoferraz.scanyourpath.searches.filters.arguments.Argument;
 
 public class Gerador {
 
@@ -23,10 +26,16 @@ public class Gerador {
 	private String pacoteDasEntidades;
 
 	public Gerador() {
-		scanner.allClasses(annotedOnClassWith(Entity.class));
+		scanner.allClasses(annotedOnClassWith(Entity.class).or(new Argument() {
+			
+			@Override
+			public boolean validate(Class<?> clazz) {
+				return clazz.getName().endsWith("EJB");
+			}
+		}));
 	}
 
-	public Gerador buscarEntidadesEm(String pacoteDasEntidades) {
+	public Gerador buscarClassesEm(String pacoteDasEntidades) {
 		this.pacoteDasEntidades = pacoteDasEntidades;
 		return this;
 	}
@@ -43,7 +52,7 @@ public class Gerador {
 					classe.setTemplate(modo.getTemplate());
 
 					classe.setPacote(modo.buscarPacote());
-					classe.setNome(clazz.getName());
+					classe.setNome(clazz.getName()+modo.getSuffix());
 					classe.definirHierarQuia(modo.buscarHierarquia());
 
 					for (Field field : clazz.getDeclaredFields()) {
@@ -57,6 +66,18 @@ public class Gerador {
 							classe.adicionarAtributo(atributo);
 						}
 					}
+					
+					for (Method method : clazz.getDeclaredMethods()) {
+						if(Modifier.isPublic(method.getModifiers())){
+							if(!forGetter(method) && !forSetter(method)){
+								Metodo metodo = modo.getMetodo().newInstance();
+								metodo.setNome(method.getName());
+								metodo.setParametros(method.getParameterTypes());
+								metodo.setRetorno(method.getReturnType());
+								classe.adicionarMetodo(metodo);
+							}
+						}
+					}
 
 					retorno.put(removerPacoteDoNome(classe.getNome())+classe.getExtesao(),classe.getTextoDaClasse());
 
@@ -67,6 +88,14 @@ public class Gerador {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	private boolean forSetter(Method method) {
+		return method.getName().startsWith("set");
+	}
+
+	private boolean forGetter(Method method) {
+		return method.getName().startsWith("get");
 	}
 
 	private boolean forEstatico(Field field) {

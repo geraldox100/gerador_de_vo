@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.geraldoferraz.geradordevo.entidades.Permissao;
-import br.com.geraldoferraz.geradordevo.template.JavaTemplates;
+import br.com.geraldoferraz.geradordevo.template.JavaVOTemplates;
 import br.com.geraldoferraz.geradordevo.tipo.Atributo;
 import br.com.geraldoferraz.geradordevo.tipo.Classe;
 
@@ -24,13 +24,8 @@ public class ClasseJavaTest {
 	@Before
 	public void beforeVO() {
 		classe = new Classe();
-		classe.setTemplate(new JavaTemplates());
+		classe.setTemplate(new JavaVOTemplates());
 		classe.setNome("br.com.entidade.Usuario");
-	}
-
-	@Test
-	public void quandoPedirONomeDaClasseDeveSerVO() {
-		assertThat(classe.getNome(), equalTo("br.com.entidade.UsuarioVO"));
 	}
 
 	@Test
